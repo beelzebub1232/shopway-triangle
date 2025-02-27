@@ -13,6 +13,7 @@ import Footer from "./components/layout/Footer";
 
 // Pages
 import Index from "./pages/Index";
+import About from "./pages/About";
 import Products from "./pages/Products";
 import ProductDetail from "./pages/ProductDetail";
 import Cart from "./pages/Cart";
@@ -39,6 +40,7 @@ const App = () => (
               <main className="flex-grow pt-16">
                 <Routes>
                   <Route path="/" element={<Index />} />
+                  <Route path="/about" element={<About />} />
                   <Route path="/products" element={<Products />} />
                   <Route path="/product/:id" element={<ProductDetail />} />
                   <Route path="/cart" element={<Cart />} />
