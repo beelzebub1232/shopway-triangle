@@ -1,26 +1,21 @@
-
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight, ShoppingBag, Clock, Shield, ArrowDown, Truck } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { getFeaturedProducts, getCategories } from '../data/products';
 import ProductCard from '../components/ui/ProductCard';
-
 const Index = () => {
   const [isLoaded, setIsLoaded] = useState(false);
   const featuredProducts = getFeaturedProducts();
   const categories = getCategories();
-
   useEffect(() => {
     // Add animation classes once component mounts
     setIsLoaded(true);
-    
+
     // Scroll to top on page load
     window.scrollTo(0, 0);
   }, []);
-
-  return (
-    <div className="page-transition">
+  return <div className="page-transition">
       {/* Hero Section */}
       <section className="min-h-[80vh] flex items-center relative overflow-hidden bg-gradient-to-br from-accent to-secondary">
         <div className="container mx-auto px-4 py-20 flex flex-col lg:flex-row items-center">
@@ -37,7 +32,7 @@ const Index = () => {
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
               <Button size="lg" asChild>
-                <Link to="/products">Shop Now</Link>
+                <Link to="/products" className="px-[77px] mx-[32px]">Shop Now</Link>
               </Button>
               <Button size="lg" variant="outline" asChild>
                 <Link to="/about">Our Story</Link>
@@ -48,11 +43,7 @@ const Index = () => {
           <div className={`lg:w-1/2 relative ${isLoaded ? 'animate-scale-up' : 'opacity-0'}`}>
             <div className="relative">
               <div className="absolute inset-0 bg-gradient-to-br from-primary/10 to-transparent rounded-xl transform rotate-3"></div>
-              <img 
-                src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1399&q=80" 
-                alt="Premium watch" 
-                className="w-full rounded-xl shadow-lg"
-              />
+              <img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1399&q=80" alt="Premium watch" className="w-full rounded-xl shadow-lg" />
             </div>
             
             <div className="absolute top-1/2 -right-4 transform -translate-y-1/2 bg-white p-5 rounded-lg shadow-xl">
@@ -125,9 +116,7 @@ const Index = () => {
           </div>
           
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-            {featuredProducts.map(product => (
-              <ProductCard key={product.id} product={product} />
-            ))}
+            {featuredProducts.map(product => <ProductCard key={product.id} product={product} />)}
           </div>
           
           <div className="text-center mt-12">
@@ -153,26 +142,16 @@ const Index = () => {
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {categories.map((category, index) => (
-              <Link 
-                key={category} 
-                to={`/products?category=${category}`} 
-                className="group relative overflow-hidden rounded-lg h-64 flex items-center justify-center"
-              >
+            {categories.map((category, index) => <Link key={category} to={`/products?category=${category}`} className="group relative overflow-hidden rounded-lg h-64 flex items-center justify-center">
                 <div className="absolute inset-0 bg-gradient-to-br from-primary/10 to-transparent z-10"></div>
-                <img 
-                  src={`https://source.unsplash.com/random/600x400?${category.toLowerCase()}`} 
-                  alt={category}
-                  className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                />
+                <img src={`https://source.unsplash.com/random/600x400?${category.toLowerCase()}`} alt={category} className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" />
                 <div className="relative z-20 text-center">
                   <div className="bg-white/90 px-6 py-4 rounded-lg shadow-lg">
                     <h3 className="text-lg font-bold">{category}</h3>
                     <p className="text-sm text-muted-foreground">{Math.floor(Math.random() * 20) + 5} products</p>
                   </div>
                 </div>
-              </Link>
-            ))}
+              </Link>)}
           </div>
         </div>
       </section>
@@ -186,18 +165,11 @@ const Index = () => {
           <p className="text-lg mb-8 max-w-2xl mx-auto">
             Join thousands of satisfied customers who have chosen our premium products.
           </p>
-          <Button 
-            size="lg" 
-            variant="secondary" 
-            asChild
-            className="bg-white text-primary hover:bg-white/90"
-          >
+          <Button size="lg" variant="secondary" asChild className="bg-white text-primary hover:bg-white/90">
             <Link to="/products">Shop Now</Link>
           </Button>
         </div>
       </section>
-    </div>
-  );
+    </div>;
 };
-
 export default Index;
